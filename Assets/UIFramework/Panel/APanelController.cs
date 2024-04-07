@@ -1,4 +1,4 @@
-﻿namespace deVoid.UIFramework {
+﻿namespace UIFramework {
     /// <summary>
     /// Base class for panels that need no special Properties
     /// </summary>

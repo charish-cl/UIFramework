@@ -4,7 +4,7 @@ using deVoid.Utils;
 using DG.Tweening;
 using UnityEngine;
 
-namespace deVoid.UIFramework.Examples
+namespace UIFramework.Examples
 {
     /// <summary>
     /// Yes, this panel is there, all the time, just waiting for its moment to shine

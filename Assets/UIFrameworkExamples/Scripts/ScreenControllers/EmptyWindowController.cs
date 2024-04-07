@@ -1,4 +1,4 @@
-namespace deVoid.UIFramework.Examples
+namespace UIFramework.Examples
 {
     /// <summary>
     /// You usually won't have empty windows, as you'll almost always have

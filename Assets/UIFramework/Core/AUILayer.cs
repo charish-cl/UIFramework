@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace deVoid.UIFramework {
+namespace UIFramework {
     /// <summary>
     /// Base class for UI Layers. Layers implement custom logic
     /// for Screen types when opening, closing etc.

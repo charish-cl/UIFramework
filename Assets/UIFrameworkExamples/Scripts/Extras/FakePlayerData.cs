@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using deVoid.Utils;
 using UnityEngine;
 
-namespace deVoid.UIFramework.Examples
+namespace UIFramework.Examples
 {
     public class PlayerDataUpdatedSignal : ASignal<List<PlayerDataEntry>> { }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using deVoid.UIFramework;
-using deVoid.UIFramework.Examples;
+using UIFramework;
+using UIFramework.Examples;
 using deVoid.Utils;
 using UnityEngine;
 

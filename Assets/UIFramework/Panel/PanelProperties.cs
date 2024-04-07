@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace deVoid.UIFramework {
+namespace UIFramework {
     /// <summary>
     /// Properties common to all panels
     /// </summary>

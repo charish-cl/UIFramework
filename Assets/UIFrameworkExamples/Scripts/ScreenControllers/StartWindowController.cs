@@ -1,6 +1,6 @@
 ﻿using deVoid.Utils;
 
-namespace deVoid.UIFramework.Examples
+namespace UIFramework.Examples
 {
     public class StartDemoSignal : ASignal { }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace deVoid.UIFramework.Editor
+namespace UIFramework.Editor
 {
     public static class UIFrameworkTools
     {

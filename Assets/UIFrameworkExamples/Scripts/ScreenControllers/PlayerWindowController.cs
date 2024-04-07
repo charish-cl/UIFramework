@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using deVoid.Utils;
 using UnityEngine;
 
-namespace deVoid.UIFramework.Examples
+namespace UIFramework.Examples
 {
     /// <summary>
     /// This is the Properties class for this specific window.

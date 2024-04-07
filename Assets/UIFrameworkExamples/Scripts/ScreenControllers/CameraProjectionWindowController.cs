@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace deVoid.UIFramework.Examples
+namespace UIFramework.Examples
 {
     [Serializable]
     public class CameraProjectionWindowProperties : WindowProperties

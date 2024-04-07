@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace deVoid.UIFramework
+namespace UIFramework
 {
     /// <summary>
     /// Defines to which para-layer

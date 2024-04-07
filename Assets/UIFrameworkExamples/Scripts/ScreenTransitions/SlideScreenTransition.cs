@@ -2,7 +2,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace deVoid.UIFramework.Examples
+namespace UIFramework.Examples
 {
     public class SlideScreenTransition : ATransitionComponent
     {

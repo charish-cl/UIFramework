@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace deVoid.UIFramework {
+namespace UIFramework {
     /// <summary>
     /// This Layer controls Panels.
     /// Panels are Screens that have no history or queuing,

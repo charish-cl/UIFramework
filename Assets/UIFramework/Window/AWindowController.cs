@@ -1,4 +1,4 @@
-﻿namespace deVoid.UIFramework
+﻿namespace UIFramework
 {
     /// <summary>
     /// Base implementation for Window ScreenControllers that need no special Properties

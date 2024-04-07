@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace deVoid.UIFramework.Examples
+namespace UIFramework.Examples
 {
     [RequireComponent(typeof(Button))]
     public class NavigationPanelButton : MonoBehaviour

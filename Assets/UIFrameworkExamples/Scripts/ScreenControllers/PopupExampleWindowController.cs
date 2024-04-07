@@ -2,7 +2,7 @@ using deVoid.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace deVoid.UIFramework.Examples
+namespace UIFramework.Examples
 {
     public class PopupExampleWindowController : AWindowController
     {

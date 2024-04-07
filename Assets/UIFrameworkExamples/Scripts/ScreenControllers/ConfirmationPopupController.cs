@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace deVoid.UIFramework.Examples
+namespace UIFramework.Examples
 {
     public class ShowConfirmationPopupSignal : ASignal<ConfirmationPopupProperties> { }
     

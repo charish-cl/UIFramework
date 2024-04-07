@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace deVoid.UIFramework.Examples {
+namespace UIFramework.Examples {
     
     
     public sealed class ScreenIds {

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace deVoid.UIFramework
+namespace UIFramework
 {
     /// <summary>
     /// This is the centralized access point for all things UI.

@@ -1,4 +1,4 @@
-﻿namespace deVoid.UIFramework {
+﻿namespace UIFramework {
     /// <summary>
     /// An entry for controlling window history and queue
     /// </summary>

@@ -6,7 +6,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace deVoid.UIFramework.Editor
+namespace UIFramework.Editor
 {
     /// <summary>
     /// It's way less error prone to have constants for your UI instead of directly typing in ids.
@@ -28,7 +28,7 @@ namespace deVoid.UIFramework.Editor
         private const string UIPrefabFolder = "Assets/UIFrameworkExamples/Prefabs/Screens";
         private const string UIIdScriptFolder = "Assets/UIFrameworkExamples/Scripts";
         private const string ScreenIdScriptName = "ScreenIds";
-        private const string ScreenIdScriptNamespace = "deVoid.UIFramework.Examples";
+        private const string ScreenIdScriptNamespace = "UIFramework.Examples";
 
         [MenuItem("Assets/Create/deVoid UI/Re-generate UI ScreenIds")]
         public static void RegenerateScreenIdsAndRefresh() {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-namespace deVoid.UIFramework {
+namespace UIFramework {
     /// <summary>
     /// Screens use ATransitionComponents to animate their in and out transitions.
     /// This can be extended to use Lerps, animations etc.

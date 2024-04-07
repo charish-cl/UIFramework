@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace deVoid.UIFramework
+namespace UIFramework
 {
     /// <summary>
     /// This layer controls all Windows.

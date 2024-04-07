@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-namespace deVoid.UIFramework
+namespace UIFramework
 {
     /// <summary>
     /// Base implementation for UI Screens. You'll probably want to inherit

@@ -1,4 +1,4 @@
-﻿namespace deVoid.UIFramework
+﻿namespace UIFramework
 {
     /// <summary>
     /// Base interface for all the screen properties

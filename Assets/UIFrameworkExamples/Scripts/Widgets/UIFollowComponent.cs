@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace deVoid.UIFramework.Examples
+namespace UIFramework.Examples
 {
 	/// <summary>
 	/// Important: this only works if the template UI element

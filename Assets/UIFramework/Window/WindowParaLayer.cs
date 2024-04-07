@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace deVoid.UIFramework {
+namespace UIFramework {
     /// <summary>
     /// This is a "helper" layer so Windows with higher priority can be displayed.
     /// By default, it contains any window tagged as a Popup. It is controlled by the WindowUILayer.

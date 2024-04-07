@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace deVoid.UIFramework {
+namespace UIFramework {
     /// <summary>
     /// Interface that all UI Screens must implement directly or indirectly
     /// </summary>

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using deVoid.Utils;
+using Utils;
 using UnityEngine;
 
 namespace UIFramework.Examples
@@ -15,7 +15,7 @@ namespace UIFramework.Examples
         public int Stars;
     }
 
-    [CreateAssetMenu(fileName = "PlayerData", menuName = "deVoid UI/Fake Player Data")]
+    [CreateAssetMenu(fileName = "PlayerData", menuName = "UI/Fake Player Data")]
     public class FakePlayerData : ScriptableObject
     {
         [SerializeField]

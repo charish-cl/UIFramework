@@ -10,7 +10,7 @@ namespace UIFramework
     /// Check the Examples project for more robust and battle-tested options:
     /// https://github.com/yankooliveira/uiframework_examples
     /// </summary>
-    public class SimpleFadeTransition : ATransitionComponent
+    public class FadeAni : AniComponent
     {
         [SerializeField] private float fadeDuration = 0.5f;
         [SerializeField] private bool fadeOut = false;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UIFramework;
 using UIFramework.Examples;
-using deVoid.Utils;
+using Utils;
 using UnityEngine;
 
 [Serializable] 
@@ -26,7 +26,7 @@ public class NavigationPanelEntry
 }
 
 public class NavigateToWindowSignal : ASignal<string> { }
-public class NavigationPanelController : APanelController
+public class NavigationPanelController : PanelController
 {
     [SerializeField] 
     private List<NavigationPanelEntry> navigationTargets = new List<NavigationPanelEntry>();

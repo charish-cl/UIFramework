@@ -17,7 +17,7 @@ namespace UIFramework.Examples
     /// Word of warning: this seems to work, but was barely tested. Be careful if taking it into
     /// production :D
     /// </summary>
-    public class LegacyAnimationScreenTransition : ATransitionComponent
+    public class AnimationView : AniComponent
     {
         [SerializeField] private AnimationClip clip = null;
         [SerializeField] private bool playReverse = false;

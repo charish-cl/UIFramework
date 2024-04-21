@@ -1,5 +1,5 @@
 ﻿using System;
-using deVoid.Utils;
+using Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

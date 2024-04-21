@@ -8,7 +8,7 @@ namespace UIFramework
     /// be instanced and registered upon instantiating a new UI Frame.
     /// </summary>
     
-    [CreateAssetMenu(fileName = "UISettings", menuName = "deVoid UI/UI Settings")]
+    [CreateAssetMenu(fileName = "UISettings", menuName = "UI/UI Settings")]
     public class UISettings : ScriptableObject
     {
         [Tooltip("Prefab for the UI Frame structure itself")]
@@ -31,7 +31,7 @@ namespace UIFramework
             if (instanceAndRegisterScreens) {
                 foreach (var screen in screensToRegister) {
                     var screenInstance = Instantiate(screen);
-                    var screenController = screenInstance.GetComponent<IUIScreenController>();
+                    var screenController = screenInstance.GetComponent<IViewController>();
 
                     if (screenController != null) {
                         newUI.RegisterScreen(screen.name, screenController, screenInstance.transform);
@@ -51,7 +51,7 @@ namespace UIFramework
         private void OnValidate() {
             List<GameObject> objectsToRemove = new List<GameObject>();
             for(int i = 0; i < screensToRegister.Count; i++) {
-                var screenCtl = screensToRegister[i].GetComponent<IUIScreenController>();
+                var screenCtl = screensToRegister[i].GetComponent<IViewController>();
                 if (screenCtl == null) {
                     objectsToRemove.Add(screensToRegister[i]);
                 }

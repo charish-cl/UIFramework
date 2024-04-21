@@ -7,19 +7,19 @@ namespace UIFramework
     /// Base implementation for UI Screens. You'll probably want to inherit
     /// from one of its child classes: AWindowController or APanelController, not this.
     /// <seealso cref="AWindowController"/>
-    /// <seealso cref="APanelController"/>
+    /// <seealso cref="PanelController"/>
     /// </summary>
-    public abstract class AUIScreenController<TProps> : MonoBehaviour, IUIScreenController
-        where TProps : IScreenProperties
+    public abstract class UIViewController<TProps> : MonoBehaviour, IViewController
+        where TProps : IViewProperties
     {
         [Header("Screen Animations")] 
         [Tooltip("Animation that shows the screen")] 
         [SerializeField]
-        private ATransitionComponent animIn;
+        private AniComponent animIn;
 
         [Tooltip("Animation that hides the screen")] 
         [SerializeField]
-        private ATransitionComponent animOut;
+        private AniComponent animOut;
 
         [Header("Screen properties")]
         [Tooltip(
@@ -35,7 +35,7 @@ namespace UIFramework
         /// <summary>
         /// Transition component for the showing up animation
         /// </summary>
-        public ATransitionComponent AnimIn
+        public AniComponent AnimIn
         {
             get { return animIn; }
             set { animIn = value; }
@@ -44,7 +44,7 @@ namespace UIFramework
         /// <summary>
         /// Transition component for the hiding animation
         /// </summary>
-        public ATransitionComponent AnimOut
+        public AniComponent AnimOut
         {
             get { return animOut; }
             set { animOut = value; }
@@ -53,24 +53,24 @@ namespace UIFramework
         /// <summary>
         /// Occurs when "in" transition is finished.
         /// </summary>
-        public Action<IUIScreenController> InTransitionFinished { get; set; }
+        public Action<IViewController> InTransitionFinished { get; set; }
 
         /// <summary>
         /// Occurs when "out" transition is finished.
         /// </summary>
-        public Action<IUIScreenController> OutTransitionFinished { get; set; }
+        public Action<IViewController> OutTransitionFinished { get; set; }
 
         /// <summary>
         /// Screen can fire this event to request its responsible layer to close it
         /// </summary>
         /// <value>The close request.</value>
-        public Action<IUIScreenController> CloseRequest { get; set; }
+        public Action<IViewController> CloseRequest { get; set; }
 
         /// <summary>
         /// If this screen is destroyed for some reason, it must warn its layer
         /// </summary>
         /// <value>The destruction action.</value>
-        public Action<IUIScreenController> ScreenDestroyed { get; set; }
+        public Action<IViewController> ScreenDestroyed { get; set; }
 
         /// <summary>
         /// Is this screen currently visible?
@@ -171,7 +171,7 @@ namespace UIFramework
         /// Show this screen with the specified properties.
         /// </summary>
         /// <param name="props">The data for the screen.</param>
-        public void Show(IScreenProperties props = null)
+        public void Show(IViewProperties props = null)
         {
             if (props != null)
             {
@@ -203,7 +203,7 @@ namespace UIFramework
             }
         }
 
-        private void DoAnimation(ATransitionComponent caller, Action callWhenFinished, bool isVisible)
+        private void DoAnimation(AniComponent caller, Action callWhenFinished, bool isVisible)
         {
             if (caller == null)
             {

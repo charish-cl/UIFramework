@@ -11,7 +11,7 @@
     /// <seealso cref="IWindowProperties"/>
     /// <seealso cref="AWindowController"/>
     /// </summary>
-    public abstract class AWindowController<TProps> : AUIScreenController<TProps>, IWindowController
+    public abstract class AWindowController<TProps> : UIViewController<TProps>, IWindowController
         where TProps : IWindowProperties
     {
         public bool HideOnForegroundLost {

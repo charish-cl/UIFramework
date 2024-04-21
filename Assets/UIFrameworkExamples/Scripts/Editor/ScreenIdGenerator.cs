@@ -30,7 +30,7 @@ namespace UIFramework.Editor
         private const string ScreenIdScriptName = "ScreenIds";
         private const string ScreenIdScriptNamespace = "UIFramework.Examples";
 
-        [MenuItem("Assets/Create/deVoid UI/Re-generate UI ScreenIds")]
+        [MenuItem("Assets/Create/UI/Re-generate UI ScreenIds")]
         public static void RegenerateScreenIdsAndRefresh() {
             RegenerateScreenIds(true);
         }
@@ -66,7 +66,7 @@ namespace UIFramework.Editor
             foreach (var asset in assets) {
                 string path = AssetDatabase.GUIDToAssetPath(asset);
                 var go = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-                var screenController = go.GetComponent<IUIScreenController>();
+                var screenController = go.GetComponent<IViewController>();
                 var name = go.name.Replace(" ", string.Empty);
                 if (screenController != null) {
                     if (paths.ContainsKey(name)) {

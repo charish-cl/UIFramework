@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using deVoid.Utils;
+using Utils;
 using DG.Tweening;
 using UnityEngine;
 
@@ -9,7 +9,7 @@ namespace UIFramework.Examples
     /// <summary>
     /// Yes, this panel is there, all the time, just waiting for its moment to shine
     /// </summary>
-    public class ToastPanelController : APanelController
+    public class ToastPanelController : PanelController
     {
         [SerializeField] private RectTransform toastRect = null;
         [SerializeField] private float toastDuration = 0.5f;

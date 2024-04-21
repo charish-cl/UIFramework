@@ -3,12 +3,12 @@
     /// <summary>
     /// Base interface for all the screen properties
     /// </summary>
-    public interface IScreenProperties { }
+    public interface IViewProperties { }
 
     /// <summary>
     /// Base interface for all Panel properties
     /// </summary>
-    public interface IPanelProperties : IScreenProperties
+    public interface IPanelProperties : IViewProperties
     {
         PanelPriority Priority { get; set; }
     }
@@ -16,7 +16,7 @@
     /// <summary>
     /// Base interface for Window properties.
     /// </summary>
-    public interface IWindowProperties : IScreenProperties
+    public interface IWindowProperties : IViewProperties
     {
         WindowPriority WindowQueuePriority { get; set; }
         bool HideOnForegroundLost { get; set; }

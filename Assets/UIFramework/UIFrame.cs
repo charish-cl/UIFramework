@@ -166,7 +166,7 @@ namespace UIFramework
         /// <param name="screenId">Screen identifier.</param>
         /// <param name="controller">Controller.</param>
         /// <param name="screenTransform">Screen transform. If not null, will be reparented to proper layer</param>
-        public void RegisterScreen(string screenId, IUIScreenController controller, Transform screenTransform) {
+        public void RegisterScreen(string screenId, IViewController controller, Transform screenTransform) {
             IWindowController window = controller as IWindowController;
             if (window != null) {
                 windowLayer.RegisterScreen(screenId, window);

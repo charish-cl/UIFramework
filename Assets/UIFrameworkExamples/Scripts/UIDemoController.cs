@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using deVoid.Utils;
+using Utils;
 using UnityEngine;
 
 namespace UIFramework.Examples

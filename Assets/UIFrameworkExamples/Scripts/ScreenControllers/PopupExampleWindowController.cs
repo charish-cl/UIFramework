@@ -1,4 +1,4 @@
-using deVoid.Utils;
+using Utils;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -9,12 +9,12 @@ namespace UIFramework {
     /// they are simply shown and hidden in the Frame
     /// eg: a HUD, an energy bar, a mini map etc.
     /// </summary>
-    public class PanelUILayer : AUILayer<IPanelController> {
+    public class PanelUILayer : UILayer<IPanelController> {
         [SerializeField]
         [Tooltip("Settings for the priority para-layers. A Panel registered to this layer will be reparented to a different para-layer object depending on its Priority.")]
         private PanelPriorityLayerList priorityLayers = null;
 
-        public override void ReparentScreen(IUIScreenController controller, Transform screenTransform) {
+        public override void ReparentScreen(IViewController controller, Transform screenTransform) {
             var ctl = controller as IPanelController;
             if (ctl != null) {
                 ReparentToParaLayer(ctl.Priority, screenTransform);

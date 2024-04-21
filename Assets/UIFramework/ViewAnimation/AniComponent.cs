@@ -6,7 +6,7 @@ namespace UIFramework {
     /// Screens use ATransitionComponents to animate their in and out transitions.
     /// This can be extended to use Lerps, animations etc.
     /// </summary>
-    public abstract class ATransitionComponent : MonoBehaviour {
+    public abstract class AniComponent : MonoBehaviour {
         /// <summary>
         /// Animate the specified target transform and execute CallWhenFinished when the animation is done.
         /// </summary>

@@ -2,12 +2,12 @@
     /// <summary>
     /// Base class for panels that need no special Properties
     /// </summary>
-    public abstract class APanelController : APanelController<PanelProperties> { }
+    public abstract class PanelController : APanelController<PanelProperties> { }
 
     /// <summary>
     /// Base class for Panels
     /// </summary>
-    public abstract class APanelController<T> : AUIScreenController<T>, IPanelController where T : IPanelProperties {
+    public abstract class APanelController<T> : UIViewController<T>, IPanelController where T : IPanelProperties {
         public PanelPriority Priority {
             get {
                 if (Properties != null) {

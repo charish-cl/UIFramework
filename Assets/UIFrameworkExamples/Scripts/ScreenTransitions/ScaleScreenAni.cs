@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UIFramework.Examples
 {
-    public class ScaleScreenTransition : ATransitionComponent
+    public class ScaleScreenAni : AniComponent
     {
         [SerializeField] protected bool isOutAnimation;
         [SerializeField] protected float duration = 0.5f;

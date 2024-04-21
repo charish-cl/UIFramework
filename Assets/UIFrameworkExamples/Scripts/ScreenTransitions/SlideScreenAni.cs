@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UIFramework.Examples
 {
-    public class SlideScreenTransition : ATransitionComponent
+    public class SlideScreenAni : AniComponent
     {
         public enum Position
         {

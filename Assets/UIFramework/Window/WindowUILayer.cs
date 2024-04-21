@@ -25,14 +25,14 @@ namespace UIFramework
             get { return screensTransitioning.Count != 0; }
         }
 
-        private HashSet<IViewController> screensTransitioning;
+        private HashSet<IScreenController> screensTransitioning;
 
         public override void Initialize() {
             base.Initialize();
             registeredScreens = new Dictionary<string, IWindowController>();
             windowQueue = new Queue<WindowHistoryEntry>();
             windowHistory = new Stack<WindowHistoryEntry>();
-            screensTransitioning = new HashSet<IViewController>();
+            screensTransitioning = new HashSet<IScreenController>();
         }
 
         protected override void ProcessScreenRegister(string screenId, IWindowController controller) {
@@ -94,7 +94,7 @@ namespace UIFramework
             windowHistory.Clear();
         }
 
-        public override void ReparentScreen(IViewController controller, Transform screenTransform) {
+        public override void ReparentScreen(IScreenController controller, Transform screenTransform) {
             IWindowController window = controller as IWindowController;
 
             if (window == null) {
@@ -110,7 +110,7 @@ namespace UIFramework
             base.ReparentScreen(controller, screenTransform);
         }
 
-        private void EnqueueWindow<TProp>(IWindowController screen, TProp properties) where TProp : IViewProperties {
+        private void EnqueueWindow<TProp>(IWindowController screen, TProp properties) where TProp : IScreenProperties {
             windowQueue.Enqueue(new WindowHistoryEntry(screen, (IWindowProperties) properties));
         }
         
@@ -176,11 +176,11 @@ namespace UIFramework
             CurrentWindow = windowEntry.Screen;
         }
         
-        private void OnInAnimationFinished(IViewController screen) {
+        private void OnInAnimationFinished(IScreenController screen) {
             RemoveTransition(screen);
         }
 
-        private void OnOutAnimationFinished(IViewController screen) {
+        private void OnOutAnimationFinished(IScreenController screen) {
             RemoveTransition(screen);
             var window = screen as IWindowController;
             if (window.IsPopup) {
@@ -188,18 +188,18 @@ namespace UIFramework
             }
         }
 
-        private void OnCloseRequestedByWindow(IViewController screen) {
+        private void OnCloseRequestedByWindow(IScreenController screen) {
             HideScreen(screen as IWindowController);
         }
 
-        private void AddTransition(IViewController screen) {
+        private void AddTransition(IScreenController screen) {
             screensTransitioning.Add(screen);
             if (RequestScreenBlock != null) {
                 RequestScreenBlock();
             }
         }
 
-        private void RemoveTransition(IViewController screen) {
+        private void RemoveTransition(IScreenController screen) {
             screensTransitioning.Remove(screen);
             if (!IsScreenTransitionInProgress) {
                 if (RequestScreenUnblock != null) {

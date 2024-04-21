@@ -6,7 +6,7 @@ namespace UIFramework {
     /// Base class for UI Layers. Layers implement custom logic
     /// for Screen types when opening, closing etc.
     /// </summary>
-    public abstract class UILayer<TScreen> : MonoBehaviour where TScreen : IViewController {
+    public abstract class UILayer<TScreen> : MonoBehaviour where TScreen : IScreenController {
         protected Dictionary<string, TScreen> registeredScreens;
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace UIFramework {
         /// <param name="screen">The ScreenController to show</param>
         /// <param name="properties">The data payload</param>
         /// <typeparam name="TProps">The type of the data payload</typeparam>
-        public abstract void ShowScreen<TProps>(TScreen screen, TProps properties) where TProps : IViewProperties;
+        public abstract void ShowScreen<TProps>(TScreen screen, TProps properties) where TProps : IScreenProperties;
 
         /// <summary>
         /// Hides a screen
@@ -41,7 +41,7 @@ namespace UIFramework {
         /// </summary>
         /// <param name="controller">The screen controller</param>
         /// <param name="screenTransform">The Screen Transform</param>
-        public virtual void ReparentScreen(IViewController controller, Transform screenTransform) {
+        public virtual void ReparentScreen(IScreenController controller, Transform screenTransform) {
             screenTransform.SetParent(transform, false);
         }
 
@@ -95,7 +95,7 @@ namespace UIFramework {
         /// <param name="screenId">The Screen Id (by default, it's the name of the Prefab)</param>
         /// <param name="properties">The data payload for this screen to use</param>
         /// <typeparam name="TProps">The type of the Properties class this screen uses</typeparam>
-        public void ShowScreenById<TProps>(string screenId, TProps properties) where TProps : IViewProperties {
+        public void ShowScreenById<TProps>(string screenId, TProps properties) where TProps : IScreenProperties {
             TScreen ctl;
             if (registeredScreens.TryGetValue(screenId, out ctl)) {
                 ShowScreen(ctl, properties);
@@ -150,7 +150,7 @@ namespace UIFramework {
             registeredScreens.Remove(screenId);
         }
 
-        private void OnScreenDestroyed(IViewController screen) {
+        private void OnScreenDestroyed(IScreenController screen) {
             if (!string.IsNullOrEmpty(screen.ScreenId)
                 && registeredScreens.ContainsKey(screen.ScreenId)) {
                 UnregisterScreen(screen.ScreenId, (TScreen) screen);

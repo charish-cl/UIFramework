@@ -9,8 +9,8 @@ namespace UIFramework
     /// <seealso cref="AWindowController"/>
     /// <seealso cref="PanelController"/>
     /// </summary>
-    public abstract class UIViewController<TProps> : MonoBehaviour, IViewController
-        where TProps : IViewProperties
+    public abstract class UIScreenController<TProps> : MonoBehaviour, IScreenController
+        where TProps : IScreenProperties
     {
         [Header("Screen Animations")] 
         [Tooltip("Animation that shows the screen")] 
@@ -53,24 +53,24 @@ namespace UIFramework
         /// <summary>
         /// Occurs when "in" transition is finished.
         /// </summary>
-        public Action<IViewController> InTransitionFinished { get; set; }
+        public Action<IScreenController> InTransitionFinished { get; set; }
 
         /// <summary>
         /// Occurs when "out" transition is finished.
         /// </summary>
-        public Action<IViewController> OutTransitionFinished { get; set; }
+        public Action<IScreenController> OutTransitionFinished { get; set; }
 
         /// <summary>
         /// Screen can fire this event to request its responsible layer to close it
         /// </summary>
         /// <value>The close request.</value>
-        public Action<IViewController> CloseRequest { get; set; }
+        public Action<IScreenController> CloseRequest { get; set; }
 
         /// <summary>
         /// If this screen is destroyed for some reason, it must warn its layer
         /// </summary>
         /// <value>The destruction action.</value>
-        public Action<IViewController> ScreenDestroyed { get; set; }
+        public Action<IScreenController> ScreenDestroyed { get; set; }
 
         /// <summary>
         /// Is this screen currently visible?
@@ -171,7 +171,7 @@ namespace UIFramework
         /// Show this screen with the specified properties.
         /// </summary>
         /// <param name="props">The data for the screen.</param>
-        public void Show(IViewProperties props = null)
+        public void Show(IScreenProperties props = null)
         {
             if (props != null)
             {

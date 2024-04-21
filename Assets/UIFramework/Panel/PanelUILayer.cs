@@ -14,7 +14,7 @@ namespace UIFramework {
         [Tooltip("Settings for the priority para-layers. A Panel registered to this layer will be reparented to a different para-layer object depending on its Priority.")]
         private PanelPriorityLayerList priorityLayers = null;
 
-        public override void ReparentScreen(IViewController controller, Transform screenTransform) {
+        public override void ReparentScreen(IScreenController controller, Transform screenTransform) {
             var ctl = controller as IPanelController;
             if (ctl != null) {
                 ReparentToParaLayer(ctl.Priority, screenTransform);

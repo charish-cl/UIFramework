@@ -66,7 +66,7 @@ namespace UIFramework.Editor
             foreach (var asset in assets) {
                 string path = AssetDatabase.GUIDToAssetPath(asset);
                 var go = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-                var screenController = go.GetComponent<IViewController>();
+                var screenController = go.GetComponent<IScreenController>();
                 var name = go.name.Replace(" ", string.Empty);
                 if (screenController != null) {
                     if (paths.ContainsKey(name)) {

@@ -4,23 +4,23 @@ namespace UIFramework {
     /// <summary>
     /// Interface that all UI Screens must implement directly or indirectly
     /// </summary>
-    public interface IViewController {
+    public interface IScreenController {
         string ScreenId { get; set; }
         bool IsVisible { get; }
 
-        void Show(IViewProperties props = null);
+        void Show(IScreenProperties props = null);
         void Hide(bool animate = true);
 
-        Action<IViewController> InTransitionFinished { get; set; }
-        Action<IViewController> OutTransitionFinished { get; set; }
-        Action<IViewController> CloseRequest { get; set; }
-        Action<IViewController> ScreenDestroyed { get; set; }
+        Action<IScreenController> InTransitionFinished { get; set; }
+        Action<IScreenController> OutTransitionFinished { get; set; }
+        Action<IScreenController> CloseRequest { get; set; }
+        Action<IScreenController> ScreenDestroyed { get; set; }
     }
 
     /// <summary>
     /// Interface that all Windows must implement
     /// </summary>
-    public interface IWindowController : IViewController {
+    public interface IWindowController : IScreenController {
         bool HideOnForegroundLost { get; }
         bool IsPopup { get; }
         WindowPriority WindowPriority { get; }
@@ -29,7 +29,7 @@ namespace UIFramework {
     /// <summary>
     /// Interface that all Panels must implement
     /// </summary>
-    public interface IPanelController : IViewController {
+    public interface IPanelController : IScreenController {
         PanelPriority Priority { get; }
     }
 }

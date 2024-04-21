@@ -31,7 +31,7 @@ namespace UIFramework
             if (instanceAndRegisterScreens) {
                 foreach (var screen in screensToRegister) {
                     var screenInstance = Instantiate(screen);
-                    var screenController = screenInstance.GetComponent<IViewController>();
+                    var screenController = screenInstance.GetComponent<IScreenController>();
 
                     if (screenController != null) {
                         newUI.RegisterScreen(screen.name, screenController, screenInstance.transform);
@@ -51,7 +51,7 @@ namespace UIFramework
         private void OnValidate() {
             List<GameObject> objectsToRemove = new List<GameObject>();
             for(int i = 0; i < screensToRegister.Count; i++) {
-                var screenCtl = screensToRegister[i].GetComponent<IViewController>();
+                var screenCtl = screensToRegister[i].GetComponent<IScreenController>();
                 if (screenCtl == null) {
                     objectsToRemove.Add(screensToRegister[i]);
                 }

@@ -2,7 +2,7 @@
 
 namespace UIFramework {
     /// <summary>
-    /// Interface that all UI Screens must implement directly or indirectly
+    /// 所有的UI界面必须实现的接口，统一风格
     /// </summary>
     public interface IScreenController {
         string ScreenId { get; set; }
@@ -18,7 +18,7 @@ namespace UIFramework {
     }
 
     /// <summary>
-    /// Interface that all Windows must implement
+    /// 所有的窗口必须实现的接口
     /// </summary>
     public interface IWindowController : IScreenController {
         bool HideOnForegroundLost { get; }
@@ -27,7 +27,7 @@ namespace UIFramework {
     }
 
     /// <summary>
-    /// Interface that all Panels must implement
+    /// 所有的面板必须实现的接口
     /// </summary>
     public interface IPanelController : IScreenController {
         PanelPriority Priority { get; }

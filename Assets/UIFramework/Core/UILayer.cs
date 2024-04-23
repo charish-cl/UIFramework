@@ -1,55 +1,54 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-
+    
 namespace UIFramework {
     /// <summary>
-    /// Base class for UI Layers. Layers implement custom logic
-    /// for Screen types when opening, closing etc.
+    /// 基础的UI Layer层
     /// </summary>
     public abstract class UILayer<TScreen> : MonoBehaviour where TScreen : IScreenController {
         protected Dictionary<string, TScreen> registeredScreens;
 
         /// <summary>
-        /// Shows a screen
+        /// 显示界面
         /// </summary>
-        /// <param name="screen">The ScreenController to show</param>
+        /// <param name="screen">界面类型参数</param>
         public abstract void ShowScreen(TScreen screen);
 
         /// <summary>
-        /// Shows a screen passing in properties
+        /// 显示一个界面，带一些参数
         /// </summary>
-        /// <param name="screen">The ScreenController to show</param>
-        /// <param name="properties">The data payload</param>
-        /// <typeparam name="TProps">The type of the data payload</typeparam>
+        /// <param name="screen">界面类型参数</param>
+        /// <param name="properties">属性参数</param>
+        /// <typeparam name="TProps">属性类型</typeparam>
         public abstract void ShowScreen<TProps>(TScreen screen, TProps properties) where TProps : IScreenProperties;
 
         /// <summary>
-        /// Hides a screen
+        /// 隐藏界面
         /// </summary>
-        /// <param name="screen">The ScreenController to be hidden</param>
+        /// <param name="screen">界面类型参数</param>
         public abstract void HideScreen(TScreen screen);
 
         /// <summary>
-        /// Initialize this layer
+        /// 初始化Layer层
         /// </summary>
         public virtual void Initialize() {
             registeredScreens = new Dictionary<string, TScreen>();
         }
 
         /// <summary>
-        /// Reparents the screen to this Layer's transform
+        /// 传进来的界面当做层的子节点
         /// </summary>
-        /// <param name="controller">The screen controller</param>
-        /// <param name="screenTransform">The Screen Transform</param>
+        /// <param name="controller">界面的controller</param>
+        /// <param name="screenTransform">界面节点</param>
         public virtual void ReparentScreen(IScreenController controller, Transform screenTransform) {
             screenTransform.SetParent(transform, false);
         }
 
         /// <summary>
-        /// Register a ScreenController to a specific ScreenId
+        /// 注册界面的controller带上明确的界面id
         /// </summary>
-        /// <param name="screenId">Target ScreenId</param>
-        /// <param name="controller">Screen Controller to be registered</param>
+        /// <param name="screenId">界面id</param>
+        /// <param name="controller">界面controller</param>
         public void RegisterScreen(string screenId, TScreen controller) {
             if (!registeredScreens.ContainsKey(screenId)) {
                 ProcessScreenRegister(screenId, controller);
@@ -60,10 +59,10 @@ namespace UIFramework {
         }
 
         /// <summary>
-        /// Unregisters a given controller from a ScreenId
+        /// 根据id取消注册界面的controller
         /// </summary>
-        /// <param name="screenId">The ScreenId</param>
-        /// <param name="controller">The controller to be unregistered</param>
+        /// <param name="screenId">界面id</param>
+        /// <param name="controller">被取消的界面controller</param>
         public void UnregisterScreen(string screenId, TScreen controller) {
             if (registeredScreens.ContainsKey(screenId)) {
                 ProcessScreenUnregister(screenId, controller);
@@ -74,10 +73,9 @@ namespace UIFramework {
         }
 
         /// <summary>
-        /// Attempts to find a registered screen that matches the id
-        /// and shows it.
+        /// 根据id去找界面的controller,并且显示出来
         /// </summary>
-        /// <param name="screenId">The desired ScreenId</param>
+        /// <param name="screenId">界面Id</param>
         public void ShowScreenById(string screenId) {
             TScreen ctl;
             if (registeredScreens.TryGetValue(screenId, out ctl)) {
@@ -89,12 +87,11 @@ namespace UIFramework {
         }
 
         /// <summary>
-        /// Attempts to find a registered screen that matches the id
-        /// and shows it, passing a data payload.
+        /// 根据界面id显示具体的controller,带上具体的属性参数
         /// </summary>
-        /// <param name="screenId">The Screen Id (by default, it's the name of the Prefab)</param>
-        /// <param name="properties">The data payload for this screen to use</param>
-        /// <typeparam name="TProps">The type of the Properties class this screen uses</typeparam>
+        /// <param name="screenId">界面id</param>
+        /// <param name="properties">属性参数</param>
+        /// <typeparam name="TProps">属性类型</typeparam>
         public void ShowScreenById<TProps>(string screenId, TProps properties) where TProps : IScreenProperties {
             TScreen ctl;
             if (registeredScreens.TryGetValue(screenId, out ctl)) {
@@ -106,10 +103,9 @@ namespace UIFramework {
         }
 
         /// <summary>
-        /// Attempts to find a registered screen that matches the id
-        /// and hides it
+        /// 根据id隐藏界面
         /// </summary>
-        /// <param name="screenId">The id for this screen (by default, it's the name of the Prefab)</param>
+        /// <param name="screenId">界面id</param>
         public void HideScreenById(string screenId) {
             TScreen ctl;
             if (registeredScreens.TryGetValue(screenId, out ctl)) {
@@ -121,18 +117,17 @@ namespace UIFramework {
         }
 
         /// <summary>
-        /// Checks if a screen is registered to this UI Layer
+        /// 根据id看是否注册了
         /// </summary>
-        /// <param name="screenId">The Screen Id (by default, it's the name of the Prefab)</param>
-        /// <returns>True if screen is registered, false if not</returns>
+        /// <param name="screenId">界面id</param>
         public bool IsScreenRegistered(string screenId) {
             return registeredScreens.ContainsKey(screenId);
         }
         
         /// <summary>
-        /// Hides all screens registered to this layer
+        /// 隐藏所有界面
         /// </summary>
-        /// <param name="shouldAnimateWhenHiding">Should the screen animate while hiding?</param>
+        /// <param name="shouldAnimateWhenHiding">隐藏的时候是否需要动画</param>
         public virtual void HideAll(bool shouldAnimateWhenHiding = true) {
             foreach (var screen in registeredScreens) {
                 screen.Value.Hide(shouldAnimateWhenHiding);

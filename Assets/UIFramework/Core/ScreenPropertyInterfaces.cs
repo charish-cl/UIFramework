@@ -1,12 +1,12 @@
 ﻿namespace UIFramework
 {
     /// <summary>
-    /// Base interface for all the screen properties
+    /// 界面属性的接口
     /// </summary>
     public interface IScreenProperties { }
 
     /// <summary>
-    /// Base interface for all Panel properties
+    /// 面板属性的接口
     /// </summary>
     public interface IPanelProperties : IScreenProperties
     {
@@ -14,7 +14,7 @@
     }
 
     /// <summary>
-    /// Base interface for Window properties.
+    /// 窗口属性的接口
     /// </summary>
     public interface IWindowProperties : IScreenProperties
     {

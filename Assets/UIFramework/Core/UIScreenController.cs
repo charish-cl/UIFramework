@@ -4,36 +4,32 @@ using System;
 namespace UIFramework
 {
     /// <summary>
-    /// Base implementation for UI Screens. You'll probably want to inherit
-    /// from one of its child classes: AWindowController or APanelController, not this.
-    /// <seealso cref="AWindowController"/>
-    /// <seealso cref="PanelController"/>
+    /// UI界面的基类，窗口，面板这些都继承它，比如 AWindowController，PanelController
     /// </summary>
     public abstract class UIScreenController<TProps> : MonoBehaviour, IScreenController
         where TProps : IScreenProperties
     {
         [Header("Screen Animations")] 
-        [Tooltip("Animation that shows the screen")] 
+        [Tooltip("界面显示的动画")] 
         [SerializeField]
         private AniComponent animIn;
 
-        [Tooltip("Animation that hides the screen")] 
+        [Tooltip("界面隐藏的动画")] 
         [SerializeField]
         private AniComponent animOut;
 
         [Header("Screen properties")]
-        [Tooltip(
-            "This is the data payload and settings for this screen. You can rig this directly in a prefab and/or pass it when you show this screen")]
+        [Tooltip("界面的属性参数")]
         [SerializeField]
         private TProps properties;
 
         /// <summary>
-        /// Unique identifier for this ID. If using the default system, it should be the same name as the screen's Prefab.
+        /// 界面id，用字符串的形式保存
         /// </summary>
         public string ScreenId { get; set; }
 
         /// <summary>
-        /// Transition component for the showing up animation
+        /// 动画组件，为了界面有统一的弹出效果
         /// </summary>
         public AniComponent AnimIn
         {
@@ -42,7 +38,7 @@ namespace UIFramework
         }
 
         /// <summary>
-        /// Transition component for the hiding animation
+        /// 动画组件，为了界面有统一的隐藏效果
         /// </summary>
         public AniComponent AnimOut
         {
@@ -51,38 +47,33 @@ namespace UIFramework
         }
 
         /// <summary>
-        /// Occurs when "in" transition is finished.
+        /// 弹出（渐入）动画完成之后回调
         /// </summary>
         public Action<IScreenController> InTransitionFinished { get; set; }
 
         /// <summary>
-        /// Occurs when "out" transition is finished.
+        /// 关闭（渐隐）动画完成之后回调
         /// </summary>
         public Action<IScreenController> OutTransitionFinished { get; set; }
 
         /// <summary>
-        /// Screen can fire this event to request its responsible layer to close it
+        /// 关闭界面的回调
         /// </summary>
-        /// <value>The close request.</value>
         public Action<IScreenController> CloseRequest { get; set; }
 
         /// <summary>
-        /// If this screen is destroyed for some reason, it must warn its layer
+        /// 界面销毁的回调
         /// </summary>
-        /// <value>The destruction action.</value>
         public Action<IScreenController> ScreenDestroyed { get; set; }
 
         /// <summary>
-        /// Is this screen currently visible?
+        /// 界面是否显示中
         /// </summary>
-        /// <value><c>true</c> if visible; otherwise, <c>false</c>.</value>
         public bool IsVisible { get; private set; }
 
         /// <summary>
-        /// The properties of this screen. Can contain
-        /// serialized values, or passed in private values.
+        /// 界面的属性参数
         /// </summary>
-        /// <value>The properties.</value>
         protected TProps Properties
         {
             get { return properties; }
@@ -109,58 +100,51 @@ namespace UIFramework
         }
 
         /// <summary>
-        /// For setting up all the listeners for events/messages. By default, called on Awake()
+        /// 添加监听事件，Awake会自动调
         /// </summary>
         protected virtual void AddListeners()
         {
         }
 
         /// <summary>
-        /// For removing all the listeners for events/messages. By default, called on OnDestroy()
+        /// 移除监听事件，Destroy会自动调
         /// </summary>
         protected virtual void RemoveListeners()
         {
         }
 
         /// <summary>
-        /// When Properties are set for this screen, this method is called.
-        /// At this point, you can safely access Properties.
+        /// 属性参数设置到界面的时候触发，在SetProperties之后触发，比较安全的能取到值
         /// </summary>
         protected virtual void OnPropertiesSet()
         {
         }
 
         /// <summary>
-        /// When the screen animates out, this is called
-        /// immediately 
+        /// 界面隐藏的时候触发，便于处理一些操作
         /// </summary>
         protected virtual void WhileHiding()
         {
         }
 
         /// <summary>
-        /// When setting the properties, this method is called.
-        /// This way, you can extend the usage of your properties by
-        /// certain conditions.
+        /// 设置属性参数
         /// </summary>
-        /// <param name="props">Properties.</param>
         protected virtual void SetProperties(TProps props)
         {
             properties = props;
         }
 
         /// <summary>
-        /// In case your screen has any special behaviour to be called
-        /// when the hierarchy is adjusted
+        /// 在显示的时候处理一些层级，或者属性处理等，具体看继承者重写了
         /// </summary>
         protected virtual void HierarchyFixOnShow()
         {
         }
 
         /// <summary>
-        /// Hides the screen
+        /// 隐藏界面
         /// </summary>
-        /// <param name="animate">Should animation be played? (defaults to true)</param>
         public void Hide(bool animate = true)
         {
             DoAnimation(animate ? animOut : null, OnTransitionOutFinished, false);
@@ -168,9 +152,8 @@ namespace UIFramework
         }
 
         /// <summary>
-        /// Show this screen with the specified properties.
+        /// 显示具体界面，带上属性参数
         /// </summary>
-        /// <param name="props">The data for the screen.</param>
         public void Show(IScreenProperties props = null)
         {
             if (props != null)

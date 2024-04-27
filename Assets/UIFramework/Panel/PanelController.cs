@@ -1,11 +1,11 @@
 ﻿namespace UIFramework {
     /// <summary>
-    /// Base class for panels that need no special Properties
+    /// 面板控制器
     /// </summary>
     public abstract class PanelController : APanelController<PanelProperties> { }
 
     /// <summary>
-    /// Base class for Panels
+    /// 面板控制器基类
     /// </summary>
     public abstract class APanelController<T> : UIScreenController<T>, IPanelController where T : IPanelProperties {
         public PanelPriority Priority {

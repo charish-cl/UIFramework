@@ -4,27 +4,22 @@ using UnityEngine;
 namespace UIFramework
 {
     /// <summary>
-    /// Template for an UI. You can rig the prefab for the UI Frame itself and all the screens that should
-    /// be instanced and registered upon instantiating a new UI Frame.
+    /// UI的模板.
     /// </summary>
     
     [CreateAssetMenu(fileName = "UISettings", menuName = "UI/UI Settings")]
     public class UISettings : ScriptableObject
     {
-        [Tooltip("Prefab for the UI Frame structure itself")]
+        [Tooltip("UI Frame的预制体")]
         [SerializeField] private UIFrame templateUIPrefab = null;
-        [Tooltip("Prefabs for all the screens (both Panels and Windows) that are to be instanced and registered when the UI is instantiated")]
+        [Tooltip("界面的预制体(包括面板和窗口)")]
         [SerializeField] private List<GameObject> screensToRegister = null;
-        [Tooltip("In case a screen prefab is not deactivated, should the system automatically deactivate its GameObject upon instantiation? If false, the screen will be at a visible state upon instantiation.")]
+        [Tooltip("实例化时是否停用")]
         [SerializeField] private bool deactivateScreenGOs = true;
 
         /// <summary>
-        /// Creates an instance of the UI Frame Prefab. By default, also instantiates
-        /// all the screens listed and registers them. If the deactivateScreenGOs flag is
-        /// true, it will deactivate all Screen GameObjects in case they're active.
+        /// 创建一个UI Frame对象
         /// </summary>
-        /// <param name="instanceAndRegisterScreens">Should the screens listed in the Settings file be instanced and registered?</param>
-        /// <returns>A new UI Frame</returns>
         public UIFrame CreateUIInstance(bool instanceAndRegisterScreens = true) {
             var newUI = Instantiate(templateUIPrefab);
 

@@ -4,11 +4,7 @@ using UnityEngine;
 namespace UIFramework
 {
     /// <summary>
-    /// This is a simple fade transition implemented as a built-in example.
-    /// I recommend using a free tweening library like DOTween (http://dotween.demigiant.com/)
-    /// or rolling out your own.
-    /// Check the Examples project for more robust and battle-tested options:
-    /// https://github.com/yankooliveira/uiframework_examples
+    /// 渐入动画，同样愿意自己封装DoTween的也行
     /// </summary>
     public class FadeAni : AniComponent
     {

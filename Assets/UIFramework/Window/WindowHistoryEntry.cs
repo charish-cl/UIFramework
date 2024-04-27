@@ -1,6 +1,6 @@
 ﻿namespace UIFramework {
     /// <summary>
-    /// An entry for controlling window history and queue
+    /// 窗口记录和队列
     /// </summary>
     public struct WindowHistoryEntry
     {

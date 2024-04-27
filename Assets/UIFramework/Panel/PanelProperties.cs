@@ -2,12 +2,12 @@
 
 namespace UIFramework {
     /// <summary>
-    /// Properties common to all panels
+    /// 面板属性类
     /// </summary>
     [System.Serializable] 
     public class PanelProperties : IPanelProperties {
         [SerializeField] 
-        [Tooltip("Panels go to different para-layers depending on their priority. You can set up para-layers in the Panel Layer.")]
+        [Tooltip("面板根据其优先级进入不同的副层级。可以在“面板层级”中设置副层级。")]
         private PanelPriority priority;
 
         public PanelPriority Priority {

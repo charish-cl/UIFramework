@@ -5,9 +5,8 @@ using UnityEngine;
 namespace UIFramework
 {
     /// <summary>
-    /// This layer controls all Windows.
-    /// Windows are Screens that follow a history and a queue, and are displayed
-    /// one at a time (and may or may not be modals). This also includes pop-ups.
+    /// 这个layer层控制所有的窗口.
+    /// 有显示记录和队列的，并且一次只显示一个
     /// </summary>
     public class WindowUILayer : UILayer<IWindowController>
     {

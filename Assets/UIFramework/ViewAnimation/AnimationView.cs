@@ -5,17 +5,7 @@ using UnityEngine;
 namespace UIFramework.Examples
 {
     /// <summary>
-    /// I have avoided using the Legacy Animation system for ages, but since I know people
-    /// will want to have hand-authored animations on their UI and I highly recommend
-    /// *not* using Animator for that, both for workflow and performance reasons
-    /// (ref: https://www.youtube.com/watch?v=_wxitgdx-UI&t=2883s ),
-    /// I decided to add this example using the Legacy system. An alternative you can
-    /// look into is the SimpleAnimationComponent 
-    /// (ref: https://blogs.unity3d.com/2017/11/28/introducing-the-simple-animation-component/ )
-    /// Although it still runs on top of Animator, at least it might have a simpler workflow.
-    ///
-    /// Word of warning: this seems to work, but was barely tested. Be careful if taking it into
-    /// production :D
+    /// 具体动画实现，自己封装DoTween之类的都行，这个随意。
     /// </summary>
     public class AnimationView : AniComponent
     {

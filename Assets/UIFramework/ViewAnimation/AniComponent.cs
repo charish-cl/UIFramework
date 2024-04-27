@@ -3,15 +3,12 @@ using System;
 
 namespace UIFramework {
     /// <summary>
-    /// Screens use ATransitionComponents to animate their in and out transitions.
-    /// This can be extended to use Lerps, animations etc.
+    /// 界面动画组件
     /// </summary>
     public abstract class AniComponent : MonoBehaviour {
         /// <summary>
-        /// Animate the specified target transform and execute CallWhenFinished when the animation is done.
+        /// 动画播放，当动画执行完调用CallWhenFinished.
         /// </summary>
-        /// <param name="target">Target transform.</param>
-        /// <param name="callWhenFinished">Delegate to be called when animation is finished.</param>
         public abstract void Animate(Transform target, Action callWhenFinished);
     }
 }

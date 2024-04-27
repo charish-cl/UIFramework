@@ -1,15 +1,12 @@
 ﻿namespace UIFramework
 {
     /// <summary>
-    /// Base implementation for Window ScreenControllers that need no special Properties
+    /// 窗口管理类
     /// </summary>
     public abstract class AWindowController : AWindowController<WindowProperties> { }
 
     /// <summary>
-    /// Base implementation for Window ScreenControllers. Its parameter is a specific type of IWindowProperties.
-    /// In case your window doesn't need special properties, inherit from AWindowScreenController, without Generic param.
-    /// <seealso cref="IWindowProperties"/>
-    /// <seealso cref="AWindowController"/>
+    /// 窗口管理基类
     /// </summary>
     public abstract class AWindowController<TProps> : UIScreenController<TProps>, IWindowController
         where TProps : IWindowProperties
@@ -27,12 +24,7 @@
         }
 
         /// <summary>
-        /// Requests this Window to be closed, handy for rigging it directly in the Editor.
-        /// I use the UI_ prefix to group all the methods that should be rigged in the Editor so that it's
-        /// easy to find the screen-specific methods. It breaks naming convention, but does more good than harm as
-        /// the amount of methods grow.
-        /// This is *not* called every time it is closed, just upon user input - for that behaviour, see
-        /// WhileHiding();
+        /// 关闭窗口，使用 UI_ 前缀来方便找到对应的方法
         /// </summary>
         public virtual void UI_Close() {
             CloseRequest(this);
@@ -40,8 +32,6 @@
         
         protected sealed override void SetProperties(TProps props) {
             if (props != null) {
-                // If the Properties set on the prefab should not be overwritten,
-                // copy the default values to the passed in properties
                 if (!props.SuppressPrefabProperties) {
                     props.HideOnForegroundLost = Properties.HideOnForegroundLost;
                     props.WindowQueuePriority = Properties.WindowQueuePriority;

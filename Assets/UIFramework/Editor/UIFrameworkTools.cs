@@ -48,8 +48,7 @@ namespace UIFramework.Editor
             var canvas = root.AddComponent<Canvas>();
             root.layer = uiLayer;
 
-            // ScreenSpaceCamera allows you to have things like 3d models, particles
-            // and post-fx rendering out of the box (shader/render order limitations still apply)
+            //  ScreenSpaceCamera 允许使用3D模型、粒子效果
             canvas.renderMode = RenderMode.ScreenSpaceCamera;
             canvas.worldCamera = cam;
 
@@ -67,7 +66,7 @@ namespace UIFramework.Editor
             eventSystem.AddComponent<EventSystem>();
             eventSystem.AddComponent<StandaloneInputModule>();
 
-            // Creating the layers
+            // 创建层
             var panelLayerGO = CreateRect("PanelLayer", root, uiLayer);
             var panelLayer = panelLayerGO.AddComponent<PanelUILayer>();
 
@@ -78,19 +77,19 @@ namespace UIFramework.Editor
 
             var windowParaLayerGO = CreateRect("PriorityWindowLayer", root, uiLayer);
             var windowParaLayer = windowParaLayerGO.AddComponent<WindowParaLayer>();
-            // setting the para layer via reflection
+            // 通过反射来设置参数
             SetPrivateField(windowLayer, windowParaLayer, "priorityParaLayer");
 
             var darkenGO = CreateRect("DarkenBG", windowParaLayer.gameObject, uiLayer);
             var darkenImage = darkenGO.AddComponent<Image>();
             darkenImage.color = new Color(0f, 0f, 0f, 0.75f);
-            // setting the BG darkener via reflection
+            // 通过反射设置蒙黑
             SetPrivateField(windowParaLayer, darkenGO, "darkenBgObject");
             darkenGO.SetActive(false);
 
             var tutorialPanelLayer = CreateRect("TutorialPanelLayer", root, uiLayer);
 
-            // Rigging all the Panel Para-Layers on the Panel Layer
+            // 在面板层上装配参数
             var prioList = new List<PanelPriorityLayerListEntry>();
             prioList.Add(new PanelPriorityLayerListEntry(PanelPriority.None, panelLayer.transform));
             prioList.Add(new PanelPriorityLayerListEntry(PanelPriority.Prioritary, prioPanelLayer.transform));

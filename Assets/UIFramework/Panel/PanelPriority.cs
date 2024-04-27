@@ -4,8 +4,7 @@ using UnityEngine;
 namespace UIFramework
 {
     /// <summary>
-    /// Defines to which para-layer
-    /// the panel is going to be parented to
+    /// 规定面板属于哪个层的，便于管理
     /// </summary>
     public enum PanelPriority {
         None = 0,
@@ -17,10 +16,10 @@ namespace UIFramework
     [System.Serializable] 
     public class PanelPriorityLayerListEntry {
         [SerializeField] 
-        [Tooltip("The panel priority type for a given target para-layer")]
+        [Tooltip("指定下面板层的优先级")]
         private PanelPriority priority;
         [SerializeField] 
-        [Tooltip("The GameObject that should house all Panels tagged with this priority")]
+        [Tooltip("此优先级下所有面板的父节点")]
         private Transform targetParent;
 
         public Transform TargetParent {
@@ -42,7 +41,7 @@ namespace UIFramework
     [System.Serializable] 
     public class PanelPriorityLayerList {
         [SerializeField] 
-        [Tooltip("A lookup of GameObjects to store panels depending on their Priority. Render priority is set by the hierarchy order of these GameObjects")]
+        [Tooltip("根据面板的优先级查找并存储对应的GameObject。渲染优先级由这些GameObject在层级结构中的顺序决定")]
         private List<PanelPriorityLayerListEntry> paraLayers = null;
 
         private Dictionary<PanelPriority, Transform> lookup;

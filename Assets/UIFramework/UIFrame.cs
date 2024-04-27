@@ -5,12 +5,11 @@ using UnityEngine.UI;
 namespace UIFramework
 {
     /// <summary>
-    /// This is the centralized access point for all things UI.
-    /// All your calls should be directed at this.
+    /// 所有的对外接口都在这，相当于UIManager之类的
     /// </summary>
     public class UIFrame : MonoBehaviour
     {
-        [Tooltip("Set this to false if you want to manually initialize this UI Frame.")]
+        [Tooltip("如果您想手动初始化此UI框架，请将其设置为false")]
         [SerializeField] private bool initializeOnAwake = true;
         
         private PanelUILayer panelLayer;
@@ -20,7 +19,7 @@ namespace UIFramework
         private GraphicRaycaster graphicRaycaster;
 
         /// <summary>
-        /// The main canvas of this UI
+        /// 主Canvas
         /// </summary>
         public Canvas MainCanvas {
             get {
@@ -33,7 +32,7 @@ namespace UIFramework
         }
 
         /// <summary>
-        /// The Camera being used by the Main UI Canvas
+        /// 主Canvas的摄像机
         /// </summary>
         public Camera UICamera {
             get { return MainCanvas.worldCamera; }
@@ -46,9 +45,7 @@ namespace UIFramework
         }
 
         /// <summary>
-        /// Initializes this UI Frame. Initialization consists of initializing both the Panel and Window layers.
-        /// Although literally all the cases I've had to this day were covered by the "Window and Panel" approach,
-        /// I made it virtual in case you ever need additional layers or other special initialization.
+        /// 初始化
         /// </summary>
         public virtual void Initialize() {
             if (panelLayer == null) {
@@ -77,50 +74,42 @@ namespace UIFramework
         }
 
         /// <summary>
-        /// Shows a panel by its id, passing no Properties.
+        /// 仅通过id显示一个面板
         /// </summary>
-        /// <param name="screenId">Panel Id</param>
         public void ShowPanel(string screenId) {
             panelLayer.ShowScreenById(screenId);
         }
 
         /// <summary>
-        /// Shows a panel by its id, passing parameters.
+        /// 通过id和属性显示面板
         /// </summary>
-        /// <param name="screenId">Identifier.</param>
-        /// <param name="properties">Properties.</param>
-        /// <typeparam name="T">The type of properties to be passed in.</typeparam>
-        /// <seealso cref="IPanelProperties"/>
         public void ShowPanel<T>(string screenId, T properties) where T : IPanelProperties {
             panelLayer.ShowScreenById<T>(screenId, properties);
         }
 
         /// <summary>
-        /// Hides the panel with the given id.
+        /// 仅通过id隐藏面板
         /// </summary>
-        /// <param name="screenId">Identifier.</param>
         public void HidePanel(string screenId) {
             panelLayer.HideScreenById(screenId);
         }
 
         /// <summary>
-        /// Opens the Window with the given Id, with no Properties.
+        /// 仅通过id显示窗口
         /// </summary>
-        /// <param name="screenId">Identifier.</param>
         public void OpenWindow(string screenId) {
             windowLayer.ShowScreenById(screenId);
         }
 
         /// <summary>
-        /// Closes the Window with the given Id.
+        /// 仅通过id关闭窗口
         /// </summary>
-        /// <param name="screenId">Identifier.</param>
         public void CloseWindow(string screenId) {
             windowLayer.HideScreenById(screenId);
         }
         
         /// <summary>
-        /// Closes the currently open window, if any is open
+        /// 关闭当前的窗口
         /// </summary>
         public void CloseCurrentWindow() {
             if (windowLayer.CurrentWindow != null) {
@@ -129,18 +118,14 @@ namespace UIFramework
         }
 
         /// <summary>
-        /// Opens the Window with the given id, passing in Properties.
+        /// 根据id打开窗口并且传递属性参数
         /// </summary>
-        /// <param name="screenId">Identifier.</param>
-        /// <param name="properties">Properties.</param>
-        /// <typeparam name="T">The type of properties to be passed in.</typeparam>
-        /// <seealso cref="IWindowProperties"/>
         public void OpenWindow<T>(string screenId, T properties) where T : IWindowProperties {
             windowLayer.ShowScreenById<T>(screenId, properties);
         }
 
         /// <summary>
-        /// Searches for the given id among the Layers, opens the Screen if it finds it
+        /// 二次包装了方法，给id就显示，搜到什么算什么了
         /// </summary>
         /// <param name="screenId">The Screen id.</param>
         public void ShowScreen(string screenId) {
@@ -160,12 +145,8 @@ namespace UIFramework
         }
 
         /// <summary>
-        /// Registers a screen. If transform is passed, the layer will
-        /// reparent it to itself. Screens can only be shown after they're registered.
+        /// 注册一个界面，如果传了screenTransform，就相当于制定了父节点
         /// </summary>
-        /// <param name="screenId">Screen identifier.</param>
-        /// <param name="controller">Controller.</param>
-        /// <param name="screenTransform">Screen transform. If not null, will be reparented to proper layer</param>
         public void RegisterScreen(string screenId, IScreenController controller, Transform screenTransform) {
             IWindowController window = controller as IWindowController;
             if (window != null) {
@@ -187,82 +168,65 @@ namespace UIFramework
         }
 
         /// <summary>
-        /// Registers the panel. Panels can only be shown after they're registered.
+        /// 注册一个面板，不注册是显示不出来的
         /// </summary>
-        /// <param name="screenId">Screen identifier.</param>
-        /// <param name="controller">Controller.</param>
-        /// <typeparam name="TPanel">The Controller type.</typeparam>
         public void RegisterPanel<TPanel>(string screenId, TPanel controller) where TPanel : IPanelController {
             panelLayer.RegisterScreen(screenId, controller);
         }
 
         /// <summary>
-        /// Unregisters the panel.
+        /// 注销一个面板
         /// </summary>
-        /// <param name="screenId">Screen identifier.</param>
-        /// <param name="controller">Controller.</param>
-        /// <typeparam name="TPanel">The Controller type.</typeparam>
         public void UnregisterPanel<TPanel>(string screenId, TPanel controller) where TPanel : IPanelController {
             panelLayer.UnregisterScreen(screenId, controller);
         }
 
         /// <summary>
-        /// Registers the Window. Windows can only be opened after they're registered.
+        /// 注册一个窗口，同理，不注册显示不出来
         /// </summary>
-        /// <param name="screenId">Screen identifier.</param>
-        /// <param name="controller">Controller.</param>
-        /// <typeparam name="TWindow">The Controller type.</typeparam>
         public void RegisterWindow<TWindow>(string screenId, TWindow controller) where TWindow : IWindowController {
             windowLayer.RegisterScreen(screenId, controller);
         }
 
         /// <summary>
-        /// Unregisters the Window.
+        /// 注销窗口
         /// </summary>
-        /// <param name="screenId">Screen identifier.</param>
-        /// <param name="controller">Controller.</param>
-        /// <typeparam name="TWindow">The Controller type.</typeparam>
         public void UnregisterWindow<TWindow>(string screenId, TWindow controller) where TWindow : IWindowController {
             windowLayer.UnregisterScreen(screenId, controller);
         }
 
         /// <summary>
-        /// Checks if a given Panel is open.
+        /// 根据面板id检测是否开启中
         /// </summary>
-        /// <param name="panelId">Panel identifier.</param>
         public bool IsPanelOpen(string panelId) {
             return panelLayer.IsPanelVisible(panelId);
         }
 
         /// <summary>
-        /// Hide all screens
+        /// 隐藏所有界面
         /// </summary>
-        /// <param name="animate">Defines if screens should the screens animate out or not.</param>
         public void HideAll(bool animate = true) {
             CloseAllWindows(animate);
             HideAllPanels(animate);
         }
 
         /// <summary>
-        /// Hide all screens on the Panel Layer
+        /// 隐藏所有面板层的界面
         /// </summary>
-        /// <param name="animate">Defines if screens should the screens animate out or not.</param>
         public void HideAllPanels(bool animate = true) {
             panelLayer.HideAll(animate);
         }
 
         /// <summary>
-        /// Hide all screens in the Window Layer
+        /// 隐藏所有窗口层的界面
         /// </summary>
-        /// <param name="animate">Defines if screens should the screens animate out or not.</param>
         public void CloseAllWindows(bool animate = true) {
             windowLayer.HideAll(animate);
         }
 
         /// <summary>
-        /// Checks if a given screen id is registered to either the Window or Panel layers
+        /// 检查界面是否被注册过了
         /// </summary>
-        /// <param name="screenId">The Id to check.</param>
         public bool IsScreenRegistered(string screenId) {
             if (windowLayer.IsScreenRegistered(screenId)) {
                 return true;
@@ -276,11 +240,8 @@ namespace UIFramework
         }
 
         /// <summary>
-        /// Checks if a given screen id is registered to either the Window or Panel layers,
-        /// also returning the screen type
+        /// 跟上面一样，只不过多了个类型的返回
         /// </summary>
-        /// <param name="screenId">The Id to check.</param>
-        /// <param name="type">The type of the screen.</param>
         public bool IsScreenRegistered(string screenId, out Type type) {
             if (windowLayer.IsScreenRegistered(screenId)) {
                 type = typeof(IWindowController);

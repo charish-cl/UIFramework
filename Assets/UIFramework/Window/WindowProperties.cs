@@ -2,7 +2,7 @@
 
 namespace UIFramework {
     /// <summary>
-    /// Properties common to all windows
+    /// 窗口的通用属性
     /// </summary>
     [System.Serializable] 
     public class WindowProperties : IWindowProperties {
@@ -21,38 +21,31 @@ namespace UIFramework {
             isPopup = false;
         }
 
-        /// <summary>
-        /// How should this window behave in case another window
-        /// is already opened?
-        /// </summary>
-        /// <value>Force Foreground opens it immediately, Enqueue queues it so that it's opened as soon as
-        /// the current one is closed. </value>
+        /// <summary>  
+        /// 如果另一个窗口已经打开，此窗口应该如何表现？  
+        /// </summary>  
+        /// <value>Force Foreground 会立即打开它，Enqueue 会将它排队，以便在当前窗口关闭后立即打开。</value>
         public WindowPriority WindowQueuePriority {
             get { return windowQueuePriority; }
             set { windowQueuePriority = value; }
         }
 
         /// <summary>
-        /// Should this window be hidden when other window takes its foreground?
+        /// 当其他窗口被置前的时候，自己是否隐藏
         /// </summary>
-        /// <value><c>true</c> if hide on foreground lost; otherwise, <c>false</c>.</value>
         public bool HideOnForegroundLost {
             get { return hideOnForegroundLost; }
             set { hideOnForegroundLost = value; }
         }
 
         /// <summary>
-        /// When properties are passed in the Open() call, should the ones
-        /// configured in the viewPrefab be overwritten?
+        ///当在Open()调用中传递属性时，是否应覆盖在viewPrefab中配置的属性
         /// </summary>
-        /// <value><c>true</c> if suppress viewPrefab properties; otherwise, <c>false</c>.</value>
         public bool SuppressPrefabProperties { get; set; }
 
         /// <summary>
-        /// Popups are displayed with a black background behind them and
-        /// in front of all other Windows
+        /// 弹出窗口在它们后面显示一个黑色背景，并在所有其他窗口的前面显示
         /// </summary>
-        /// <value><c>true</c> if this window is a popup; otherwise, <c>false</c>.</value>
         public bool IsPopup {
             get { return isPopup; }
             set { isPopup = value; }

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace UIFramework {
     /// <summary>
-    /// This is a "helper" layer so Windows with higher priority can be displayed.
-    /// By default, it contains any window tagged as a Popup. It is controlled by the WindowUILayer.
+    /// 这是一个“辅助”层级，以便显示优先级更高的窗口。
+    /// 默认情况下，它包含任何标记为弹出窗口的窗口。它由 WindowUILayer 控制
     /// </summary>
     public class WindowParaLayer : MonoBehaviour {
         [SerializeField] 

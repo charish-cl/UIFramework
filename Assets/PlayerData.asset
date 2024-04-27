@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   levelProgress:
-  - LevelName: Commando Chaos
+  - LevelName: "\u6D4B\u8BD51"
+    Stars: 3
+  - LevelName: "\u6D4B\u8BD52"
     Stars: 2
-  - LevelName: Citadel Complex
-    Stars: 2
-  - LevelName: Azure Oubliette
+  - LevelName: "\u6D4B\u8BD53"
     Stars: 1
-  - LevelName: Gun Vortex
+  - LevelName: "\u6D4B\u8BD54"
     Stars: 0

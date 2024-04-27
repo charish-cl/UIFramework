@@ -29,24 +29,24 @@ namespace UIFramework.Examples
             
             switch (currentPopupExample) {
                 case 0:
-                    testProps = new ConfirmationPopupProperties("Uh-oh!", 
-                        "You were curious and clicked the button! Try a few more times.",
-                        "Got it!");
+                    testProps = new ConfirmationPopupProperties("标题测试", 
+                        "点下按钮试试",
+                        "明白");
                     break;
                 case 1:
-                    testProps = new ConfirmationPopupProperties("Question:", 
-                        "What is your favourite color?",
-                        "Blue", OnBlueSelected, 
-                        "Red", OnRedSelected);
+                    testProps = new ConfirmationPopupProperties("小测试", 
+                        "随便选个颜色",
+                        "蓝色", OnBlueSelected, 
+                        "红色", OnRedSelected);
                     break;
                 case 2:
-                    testProps = new ConfirmationPopupProperties("Pretty cool huh?",
-                        "Let's return our buddy to its original color.",
-                        "Fine.", OnRevertColors);
+                    testProps = new ConfirmationPopupProperties("恢复颜色",
+                        "恢复成原来的颜色吧",
+                        "好的", OnRevertColors);
                     break;
                 case 3:
-                    testProps = new ConfirmationPopupProperties("YOU DIED", 
-                        "The Dark Souls of Pop-Ups", "Respawn");
+                    testProps = new ConfirmationPopupProperties("重置", 
+                        "随便测一下", "重置");
                     break;
             }
 

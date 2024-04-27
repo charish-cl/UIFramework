@@ -24,7 +24,7 @@ namespace UIFramework.Examples
         private List<UIFollowComponent> allElements = new List<UIFollowComponent>();
 
         protected override void OnPropertiesSet() {
-            CreateNewLabel(Properties.TransformToFollow,"Look at me!", null);
+            CreateNewLabel(Properties.TransformToFollow,"看这里!", null);
         }
 
         protected override void WhileHiding() {

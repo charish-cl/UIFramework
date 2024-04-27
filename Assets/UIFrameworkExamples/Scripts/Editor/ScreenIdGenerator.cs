@@ -9,19 +9,7 @@ using UnityEngine;
 namespace UIFramework.Editor
 {
     /// <summary>
-    /// It's way less error prone to have constants for your UI instead of directly typing in ids.
-    /// This utility searches through a folder for Screen prefabs and creates a class with Screen Id constants
-    /// based on their names. That way you can do eg:
-    ///
-    /// UIFrame.OpenWindow(ScreenIds.ItsAWindow);
-    ///
-    /// instead of wondering for ages why
-    ///
-    /// UIFrame.OpenWindow("ltsAWindow");
-    ///
-    /// isn't working. It isn't a perfect solution, however: if you rename prefabs, you may have to refactor part
-    /// of your code. You could also manually define these and use an asset postprocessor to validate it and warn
-    /// if the data is stale, or just do it manually. The solution below is my current favourite local maximum.
+    /// 尽可能使用一些常量，商业化框架其实就是不断的封装，封装到使用者觉得足够简单
     /// </summary>
     public class ScreenIdProcessor : AssetPostprocessor
     {

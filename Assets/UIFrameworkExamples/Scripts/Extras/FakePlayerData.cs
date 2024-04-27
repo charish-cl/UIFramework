@@ -26,12 +26,10 @@ namespace UIFramework.Examples
         }
 
         /// <summary>
-        /// This is called by the Unity Editor in MonoBehaviours and
-        /// ScriptableObjects whenever a value is changed in the inspector.
-        /// Here I'm using it to propagate the changes for the example,
-        /// but in practice, you could implement the same kind of behaviour
-        /// by having an observable variable passed into the screen via its
-        /// properties, or other forms of data-binding data to the controller.
+        /// 这个方法是由Unity编辑器在MonoBehaviours和ScriptableObjects中调用的，
+        /// 每当检查器中的值发生变化时就会触发。在这里，我使用它来传播示例中的更改，
+        /// 但在实践中，你可以通过向屏幕传递一个可观察变量来实现相同的行为，
+        /// 该变量通过其属性或其他形式的数据绑定到控制器。
         /// </summary>
         private void OnValidate() {
             Signals.Get<PlayerDataUpdatedSignal>().Dispatch(levelProgress);

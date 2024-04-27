@@ -1,13 +1,8 @@
 namespace UIFramework.Examples
 {
     /// <summary>
-    /// You usually won't have empty windows, as you'll almost always have
-    /// data to be passed onto them for set up. However, you may have multiple
-    /// windows that use the same controller, you just need them to have different
-    /// ids. More than one window in this demo is totally static and defined by
-    /// its prefab, and they are all using this empty window.
-    /// Even though it has no implementation, it still provides the functionality
-    /// for animation/priority etc.
+    /// 一般来说不会用空的，但是吧有一些窗口没啥实际意义，还遵循框架使用
+    /// 弄一个空的方便使用
     /// </summary>
     public class EmptyWindowController : AWindowController { }
 }

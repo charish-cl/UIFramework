@@ -13,9 +13,7 @@ namespace UIFramework.Examples
         private Color originalColor;
 
         /// <summary>
-        /// You can use all of Unity's regular functions, as Screens
-        /// are all MonoBehaviours, but don't forget that many of them
-        /// have important operations being called in their base methods
+        /// 本身根上是继承MonoBehaviour的，所以Awake这类的函数都能用
         /// </summary>
         protected override void Awake() {
             base.Awake();

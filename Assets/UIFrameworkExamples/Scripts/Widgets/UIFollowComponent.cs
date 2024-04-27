@@ -6,10 +6,7 @@ using UnityEngine.UI;
 namespace UIFramework.Examples
 {
 	/// <summary>
-	/// Important: this only works if the template UI element
-	/// is anchored to the bottom left corner. It also considers
-	/// the RectTransform that contains it is stretched to fit
-	/// the screen.
+	/// UI跟随组件，注意：仅在模板UI元素锚定到左下角时才有效
 	/// </summary>
 	public class UIFollowComponent : MonoBehaviour {
 		[SerializeField] private TextMeshProUGUI label = null;
@@ -25,17 +22,16 @@ namespace UIFramework.Examples
 		private CanvasScaler parentScaler;
 		private RectTransform mainCanvasRectTransform;
 	
-		/// <summary>
-		/// Calculates the anchored position for a given Worldspace transform for a Screenspace-Camera UI
-		/// </summary>
-		/// <param name="viewingCamera">The worldspace camera</param>
-		/// <param name="followTransform">The transform to be followed</param>
-		/// <param name="canvasScaler">The canvas scaler</param>
-		/// <param name="followElementRect">The rect of the UI element that will follow the transform</param>
+		/// <summary>  
+		/// 在Screenspace-Camera下的UI，给定Worldspace变换计算锚定位置  
+		/// </summary>  
+		/// <param name="viewingCamera">世界空间相机</param>  
+		/// <param name="followTransform">要跟随的物体</param>  
+		/// <param name="canvasScaler">画布缩放器</param>  
+		/// <param name="followElementRect">将跟随变换的UI元素的矩形区域</param>  
 		/// <returns></returns>
 		public static Vector2 GetAnchoredPosition(Camera viewingCamera, Transform followTransform, CanvasScaler canvasScaler, Rect followElementRect) {
-			// We need to calculate the object's relative position to the camera make sure the
-			// follow element's position doesn't end up getting "inverted" by WorldToViewportPoint when far away
+			// 坐标转换
 			var relativePosition = viewingCamera.transform.InverseTransformPoint(followTransform.position);
 			relativePosition.z = Mathf.Max(relativePosition.z, 1f);
 			var viewportPos = viewingCamera.WorldToViewportPoint(viewingCamera.transform.TransformPoint(relativePosition));
@@ -44,12 +40,12 @@ namespace UIFramework.Examples
 							   viewportPos.y * canvasScaler.referenceResolution.y - followElementRect.size.y / 2f);
 		}
 	
-		/// <summary>
-		/// Clamps the position on the screen for a Screenspace-Camera UI
-		/// </summary>
-		/// <param name="onScreenPosition">The current on-screen position for an UI element</param>
-		/// <param name="followElementRect">The rect that follows the worldspace object</param>
-		/// <param name="mainCanvasRectTransform">The rect transform of this UI's main canvas</param>
+		/// <summary>  
+		/// 限制Screenspace-Camera UI在屏幕上的位置  
+		/// </summary>  
+		/// <param name="onScreenPosition">UI元素的当前屏幕位置</param>  
+		/// <param name="followElementRect">跟随世界空间对象的矩形区域</param>  
+		/// <param name="mainCanvasRectTransform">此UI主画布的RectTransform</param>  
 		/// <returns></returns>
 		public static Vector2 GetClampedOnScreenPosition(Vector2 onScreenPosition, Rect followElementRect, RectTransform mainCanvasRectTransform) {
 			return new Vector2(Mathf.Clamp(onScreenPosition.x, 0f, mainCanvasRectTransform.sizeDelta.x - followElementRect.size.x),
@@ -85,7 +81,7 @@ namespace UIFramework.Examples
 		}
 	
 		/// <summary>
-		/// Positions element at the center of the screen
+		/// 把元素都放屏幕的中间
 		/// </summary>
 		protected void PositionAtOrigin() {
 			var mainSize = mainCanvasRectTransform.sizeDelta;

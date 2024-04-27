@@ -32,10 +32,6 @@ namespace UIFramework.Examples
                 Destroy(element.gameObject);
             }
             allElements.Clear();
-            // This is the kind of thing you *COULD* do, but you usually wouldn't
-            // want to - in theory this is UI code, so it shouldn't control external things.
-            // This is an example of "with great power comes great responsibility":
-            // the UI Framework enforces very few rules, but the rest is up to you.
             Properties.TransformToFollow.parent.gameObject.SetActive(false);
         }
 

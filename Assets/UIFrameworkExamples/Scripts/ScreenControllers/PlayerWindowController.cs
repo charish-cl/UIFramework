@@ -6,9 +6,7 @@ using UnityEngine;
 namespace UIFramework.Examples
 {
     /// <summary>
-    /// This is the Properties class for this specific window.
-    /// It carries the payload which will be used to fill up this
-    /// window upon opening.
+    /// PlayerWindow属性类
     /// </summary>
     [Serializable]
     public class PlayerWindowProperties : WindowProperties
@@ -26,13 +24,7 @@ namespace UIFramework.Examples
         private LevelProgressComponent templateLevelEntry = null;
         
         private List<LevelProgressComponent> currentLevels = new List<LevelProgressComponent>();
-
-        /// <summary>
-        /// Here I'm listening to a global signal that is fired by the ScriptableObject
-        /// itself as a way of exemplifying how you could do this in your codebase.
-        /// I could optionally carry the ScriptableObject itself, store a reference to it
-        /// and do the same process via direct event hooks.
-        /// </summary>
+        
         protected override void AddListeners() {
             Signals.Get<PlayerDataUpdatedSignal>().AddListener(OnDataUpdated);
         }
@@ -59,7 +51,7 @@ namespace UIFramework.Examples
                 while (currentLevels.Count < levelCount) {
                     var newLevel = Instantiate(templateLevelEntry, 
                         templateLevelEntry.transform.parent, 
-                        false); // Never forget to pass worldPositionStays as false for UI!
+                        false);
                     newLevel.gameObject.SetActive(true);
                     currentLevels.Add(newLevel);
                 }

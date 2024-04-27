@@ -35,8 +35,7 @@ public class NavigationPanelController : PanelController
     
     private readonly List<NavigationPanelButton> currentButtons = new List<NavigationPanelButton>();
 
-    // I usually always place AddListeners and RemoveListeners together
-    // to reduce the chances of adding a listener and not removing it.
+    // 一般来说AddListeners和RemoveListeners都是成对出现的，别add完忘记remove
     protected override void AddListeners() {
         Signals.Get<NavigateToWindowSignal>().AddListener(OnExternalNavigation);
     }
@@ -46,19 +45,12 @@ public class NavigationPanelController : PanelController
     }
 
     /// <summary>
-    /// This is called whenever this screen is opened
-    /// be it for the first time or coming from the history/queue
+    /// 当界面打开时候，这个函数被调用
     /// </summary>
     protected override void OnPropertiesSet() {
         ClearEntries();
         foreach (var target in navigationTargets) {
             var newBtn = Instantiate(templateButton);
-            // When using UI, never forget to pass the parameter
-            // worldPositionStays as FALSE, otherwise your RectTransform
-            // won't layout properly after reparenting.
-            // This is the cause for the most common head-scratching issues
-            // when starting to deal with Unity UI: adding objects via the editor
-            // working fine but objects instanced via code having broken sizes/positions
             newBtn.transform.SetParent(templateButton.transform.parent, false); 
             newBtn.SetData(target);
             newBtn.gameObject.SetActive(true);
@@ -66,7 +58,7 @@ public class NavigationPanelController : PanelController
             currentButtons.Add(newBtn);
         }
         
-        // The first button is selected by default
+        // 默认选中第一个按钮
         OnNavigationButtonClicked(currentButtons[0]);
     }
 

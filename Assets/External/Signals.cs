@@ -31,16 +31,13 @@ using System.Collections.Generic;
 namespace Utils
 {
     /// <summary>
-    /// Base interface for Signals
+    /// 事件类
     /// </summary>
     public interface ISignal
     {
         string Hash { get; }
     }
-
-    /// <summary>
-    /// Signals main facade class for global, game-wide signals
-    /// </summary>
+    
     public static class Signals
     {
         private static readonly SignalHub hub = new SignalHub();
@@ -48,28 +45,18 @@ namespace Utils
         public static SType Get<SType>() where SType : ISignal, new() {
             return hub.Get<SType>();
         }
-
-        public static void AddListenerToHash(string signalHash, Action handler) {
-            hub.AddListenerToHash(signalHash, handler);
-        }
-
-        public static void RemoveListenerFromHash(string signalHash, Action handler) {
-            hub.RemoveListenerFromHash(signalHash, handler);
-        }
     }
 
     /// <summary>
-    /// A hub for Signals you can implement in your classes
+    /// 事件中心
     /// </summary>
     public class SignalHub
     {
         private Dictionary<Type, ISignal> signals = new Dictionary<Type, ISignal>();
 
         /// <summary>
-        /// Getter for a signal of a given type
+        /// 根据类型获取事件
         /// </summary>
-        /// <typeparam name="SType">Type of signal</typeparam>
-        /// <returns>The proper signal binding</returns>
         public SType Get<SType>() where SType : ISignal, new() {
             Type signalType = typeof(SType);
             ISignal signal;
@@ -82,26 +69,15 @@ namespace Utils
         }
 
         /// <summary>
-        /// Manually provide a SignalHash and bind it to a given listener
-        /// (you most likely want to use an AddListener, unless you know exactly
-        /// what you are doing)
-        /// </summary>
-        /// <param name="signalHash">Unique hash for signal</param>
-        /// <param name="handler">Callback for signal listener</param>
+        /// 手动提供一个事件的哈希，并将其绑定到给定的监听器
+        /// /// </summary> 
         public void AddListenerToHash(string signalHash, Action handler) {
             ISignal signal = GetSignalByHash(signalHash);
             if (signal != null && signal is ASignal) {
                 (signal as ASignal).AddListener(handler);
             }
         }
-
-        /// <summary>
-        /// Manually provide a SignalHash and unbind it from a given listener
-        /// (you most likely want to use a RemoveListener, unless you know exactly
-        /// what you are doing)
-        /// </summary>
-        /// <param name="signalHash">Unique hash for signal</param>
-        /// <param name="handler">Callback for signal listener</param>
+        
         public void RemoveListenerFromHash(string signalHash, Action handler) {
             ISignal signal = GetSignalByHash(signalHash);
             if (signal != null && signal is ASignal) {
@@ -138,14 +114,14 @@ namespace Utils
     }
 
     /// <summary>
-    /// Abstract class for Signals, provides hash by type functionality
+    /// 信号事件的抽象类
     /// </summary>
     public abstract class ABaseSignal : ISignal
     {
         protected string _hash;
 
         /// <summary>
-        /// Unique id for this signal
+        /// 本身的哈希值
         /// </summary>
         public string Hash {
             get {
@@ -159,16 +135,15 @@ namespace Utils
     }
 
     /// <summary>
-    /// Strongly typed messages with no parameters
+    /// 事件的具体实现
     /// </summary>
     public abstract class ASignal : ABaseSignal
     {
         private Action callback;
 
         /// <summary>
-        /// Adds a listener to this Signal
+        /// 事件加监听
         /// </summary>
-        /// <param name="handler">Method to be called when signal is fired</param>
         public void AddListener(Action handler) {
 #if UNITY_EDITOR
             UnityEngine.Debug.Assert(
@@ -180,15 +155,14 @@ namespace Utils
         }
 
         /// <summary>
-        /// Removes a listener from this Signal
+        /// 事件的移除监听
         /// </summary>
-        /// <param name="handler">Method to be unregistered from signal</param>
         public void RemoveListener(Action handler) {
             callback -= handler;
         }
 
         /// <summary>
-        /// Dispatch this signal
+        /// 广播事件
         /// </summary>
         public void Dispatch() {
             if (callback != null) {
@@ -198,17 +172,15 @@ namespace Utils
     }
 
     /// <summary>
-    /// Strongly typed messages with 1 parameter
+    /// 带一个参数的事件
     /// </summary>
-    /// <typeparam name="T">Parameter type</typeparam>
     public abstract class ASignal<T> : ABaseSignal
     {
         private Action<T> callback;
 
         /// <summary>
-        /// Adds a listener to this Signal
+        /// 事件加监听
         /// </summary>
-        /// <param name="handler">Method to be called when signal is fired</param>
         public void AddListener(Action<T> handler) {
 #if UNITY_EDITOR
             UnityEngine.Debug.Assert(
@@ -220,15 +192,14 @@ namespace Utils
         }
 
         /// <summary>
-        /// Removes a listener from this Signal
+        /// 移除监听
         /// </summary>
-        /// <param name="handler">Method to be unregistered from signal</param>
         public void RemoveListener(Action<T> handler) {
             callback -= handler;
         }
 
         /// <summary>
-        /// Dispatch this signal with 1 parameter
+        /// 广播事件，带一个参数
         /// </summary>
         public void Dispatch(T arg1) {
             if (callback != null) {
@@ -238,18 +209,12 @@ namespace Utils
     }
 
     /// <summary>
-    /// Strongly typed messages with 2 parameters
+    /// 同理，2个参数的事件
     /// </summary>
-    /// <typeparam name="T">First parameter type</typeparam>
-    /// <typeparam name="U">Second parameter type</typeparam>
     public abstract class ASignal<T, U> : ABaseSignal
     {
         private Action<T, U> callback;
-
-        /// <summary>
-        /// Adds a listener to this Signal
-        /// </summary>
-        /// <param name="handler">Method to be called when signal is fired</param>
+        
         public void AddListener(Action<T, U> handler) {
 #if UNITY_EDITOR
             UnityEngine.Debug.Assert(
@@ -259,18 +224,11 @@ namespace Utils
 #endif
             callback += handler;
         }
-
-        /// <summary>
-        /// Removes a listener from this Signal
-        /// </summary>
-        /// <param name="handler">Method to be unregistered from signal</param>
+        
         public void RemoveListener(Action<T, U> handler) {
             callback -= handler;
         }
-
-        /// <summary>
-        /// Dispatch this signal
-        /// </summary>
+        
         public void Dispatch(T arg1, U arg2) {
             if (callback != null) {
                 callback(arg1, arg2);
@@ -279,19 +237,12 @@ namespace Utils
     }
 
     /// <summary>
-    /// Strongly typed messages with 3 parameter
+    /// 同理三个参数的事件
     /// </summary>
-    /// <typeparam name="T">First parameter type</typeparam>
-    /// <typeparam name="U">Second parameter type</typeparam>
-    /// <typeparam name="V">Third parameter type</typeparam>
     public abstract class ASignal<T, U, V> : ABaseSignal
     {
         private Action<T, U, V> callback;
-
-        /// <summary>
-        /// Adds a listener to this Signal
-        /// </summary>
-        /// <param name="handler">Method to be called when signal is fired</param>
+        
         public void AddListener(Action<T, U, V> handler) {
 #if UNITY_EDITOR
             UnityEngine.Debug.Assert(
@@ -301,18 +252,11 @@ namespace Utils
 #endif
             callback += handler;
         }
-
-        /// <summary>
-        /// Removes a listener from this Signal
-        /// </summary>
-        /// <param name="handler">Method to be unregistered from signal</param>
+        
         public void RemoveListener(Action<T, U, V> handler) {
             callback -= handler;
         }
-
-        /// <summary>
-        /// Dispatch this signal
-        /// </summary>
+        
         public void Dispatch(T arg1, U arg2, V arg3) {
             if (callback != null) {
                 callback(arg1, arg2, arg3);

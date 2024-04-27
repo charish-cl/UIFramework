@@ -11,10 +11,10 @@ namespace UIFramework.Examples
     [Serializable]
     public class ConfirmationPopupController: AWindowController<ConfirmationPopupProperties>
     {
-        [SerializeField] public TextMeshProUGUI titleLabel;
-        [SerializeField] public TextMeshProUGUI messageLabel;
-        [SerializeField] public TextMeshProUGUI confirmButtonLabel;
-        [SerializeField] public TextMeshProUGUI cancelButtonLabel;
+        [SerializeField] public Text titleLabel;
+        [SerializeField] public Text messageLabel;
+        [SerializeField] public Text confirmButtonLabel;
+        [SerializeField] public Text cancelButtonLabel;
         [SerializeField] public GameObject cancelButtonObject;
         protected override void OnPropertiesSet() {
             titleLabel.text = Properties.Title;

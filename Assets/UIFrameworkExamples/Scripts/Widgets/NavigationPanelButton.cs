@@ -9,7 +9,7 @@ namespace UIFramework.Examples
     public class NavigationPanelButton : MonoBehaviour
     {
         [SerializeField] 
-        private TextMeshProUGUI buttonLabel = null;
+        private Text buttonLabel = null;
         [SerializeField] 
         private Image icon = null;
 

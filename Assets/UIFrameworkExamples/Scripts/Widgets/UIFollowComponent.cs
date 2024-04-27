@@ -9,7 +9,7 @@ namespace UIFramework.Examples
 	/// UI跟随组件，注意：仅在模板UI元素锚定到左下角时才有效
 	/// </summary>
 	public class UIFollowComponent : MonoBehaviour {
-		[SerializeField] private TextMeshProUGUI label = null;
+		[SerializeField] private Text label = null;
 		[SerializeField] private Image icon = null;
 		[SerializeField] private bool clampAtBorders = true;
 		[SerializeField] private bool rotateWhenClamped = true;

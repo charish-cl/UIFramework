@@ -6,8 +6,8 @@ namespace UIFramework.Examples
 {
     public class LevelProgressComponent : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI levelCounter = null;
-        [SerializeField] private TextMeshProUGUI levelName = null;
+        [SerializeField] private Text levelCounter = null;
+        [SerializeField] private Text levelName = null;
         [SerializeField] private Image[] stars = null;
         [SerializeField] private Color starOn = Color.yellow;
         [SerializeField] private Color starOff = Color.black;

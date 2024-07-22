@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace UIFramework.Examples
 {
-    public class PopupExampleWindowController : AWindowController
+    public class PopupExampleWindowController : WindowController
     {
         [SerializeField] 
         private Image exampleImage = null;

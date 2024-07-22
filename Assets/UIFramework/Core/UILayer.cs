@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
     
 namespace UIFramework {
@@ -7,7 +8,7 @@ namespace UIFramework {
     /// </summary>
     public abstract class UILayer<TScreen> : MonoBehaviour where TScreen : IScreenController {
         protected Dictionary<string, TScreen> registeredScreens;
-
+        
         /// <summary>
         /// 显示界面
         /// </summary>

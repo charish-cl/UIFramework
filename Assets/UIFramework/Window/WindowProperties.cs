@@ -14,13 +14,7 @@ namespace UIFramework {
 
         [SerializeField]
         protected bool isPopup = false;
-
-        public WindowProperties() {
-            hideOnForegroundLost = true;
-            windowQueuePriority = WindowPriority.ForceForeground;
-            isPopup = false;
-        }
-
+        
         /// <summary>  
         /// 如果另一个窗口已经打开，此窗口应该如何表现？  
         /// </summary>  
@@ -50,7 +44,11 @@ namespace UIFramework {
             get { return isPopup; }
             set { isPopup = value; }
         }
-
+        public WindowProperties() {
+            hideOnForegroundLost = true;
+            windowQueuePriority = WindowPriority.ForceForeground;
+            isPopup = false;
+        }
         public WindowProperties(bool suppressPrefabProperties = false) {
             WindowQueuePriority = WindowPriority.ForceForeground;
             HideOnForegroundLost = false;

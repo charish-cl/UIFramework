@@ -60,7 +60,7 @@ namespace UIFramework
 
             if (windowLayer == null) {
                 windowLayer = gameObject.GetComponentInChildren<WindowUILayer>(true);
-                if (panelLayer == null) {
+                if (windowLayer == null) {
                     Debug.LogError("[UI Frame] UI Frame lacks Window Layer!");
                 }
                 else {
@@ -144,6 +144,7 @@ namespace UIFramework
             }
         }
 
+       
         /// <summary>
         /// 注册一个界面，如果传了screenTransform，就相当于制定了父节点
         /// </summary>
@@ -166,6 +167,9 @@ namespace UIFramework
                 }
             }
         }
+        #region 二次封装
+
+        
 
         /// <summary>
         /// 注册一个面板，不注册是显示不出来的
@@ -256,7 +260,8 @@ namespace UIFramework
             type = null;
             return false;
         }
-
+ 
+        #endregion
         private void OnRequestScreenBlock() {
             if (graphicRaycaster != null) {
                 graphicRaycaster.enabled = false;
@@ -268,5 +273,6 @@ namespace UIFramework
                 graphicRaycaster.enabled = true;
             }
         }
+       
     }
 }

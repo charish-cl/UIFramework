@@ -11,7 +11,14 @@ namespace UIFramework {
         void Show(IScreenProperties props = null);
         void Hide(bool animate = true);
 
+        /// <summary>
+        /// 进入动画完成
+        /// </summary>
         Action<IScreenController> InTransitionFinished { get; set; }
+        
+        /// <summary>
+        /// 弹出动画完成
+        /// </summary>
         Action<IScreenController> OutTransitionFinished { get; set; }
         Action<IScreenController> CloseRequest { get; set; }
         Action<IScreenController> ScreenDestroyed { get; set; }

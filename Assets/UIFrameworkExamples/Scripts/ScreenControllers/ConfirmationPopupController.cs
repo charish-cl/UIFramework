@@ -9,7 +9,7 @@ namespace UIFramework.Examples
     public class ShowConfirmationPopupSignal : ASignal<ConfirmationPopupProperties> { }
     
     [Serializable]
-    public class ConfirmationPopupController: AWindowController<ConfirmationPopupProperties>
+    public class ConfirmationPopupController: WindowController<ConfirmationPopupProperties>
     {
         [SerializeField] public Text titleLabel;
         [SerializeField] public Text messageLabel;

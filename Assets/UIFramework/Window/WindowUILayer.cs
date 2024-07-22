@@ -100,6 +100,7 @@ namespace UIFramework
                 Debug.LogError("[WindowUILayer] Screen " + screenTransform.name + " is not a Window!");
             }
             else {
+                //看是不是顶层
                 if (window.IsPopup) {
                     priorityParaLayer.AddScreen(screenTransform);
                     return;
@@ -114,14 +115,15 @@ namespace UIFramework
         }
         
         private bool ShouldEnqueue(IWindowController controller, IWindowProperties windowProp) {
+            //队列里没元素，直接显示就行了，不用队列了
             if (CurrentWindow == null && windowQueue.Count == 0) {
                 return false;
             }
-
+            
             if (windowProp != null && windowProp.SuppressPrefabProperties) {
                 return windowProp.WindowQueuePriority != WindowPriority.ForceForeground;
             }
-
+            //看是不是直接打开的
             if (controller.WindowPriority != WindowPriority.ForceForeground) {
                 return true;
             }
@@ -157,6 +159,7 @@ namespace UIFramework
                         "that triggers the continuation of the flow."
                         , CurrentWindow.ScreenId));
             }
+            //先把当前窗口压入历史 传进来的windowEntry也不是小窗口
             else if (CurrentWindow != null
                      && CurrentWindow.HideOnForegroundLost
                      && !windowEntry.Screen.IsPopup) {

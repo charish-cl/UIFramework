@@ -16,7 +16,7 @@ namespace UIFramework.Examples
         }
     }
 
-    public class CameraProjectionWindowController : AWindowController<CameraProjectionWindowProperties>
+    public class CameraProjectionWindowController : WindowController<CameraProjectionWindowProperties>
     {
         [SerializeField] 
         private UIFollowComponent followTemplate = null;

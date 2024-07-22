@@ -18,7 +18,7 @@ namespace UIFramework.Examples
         }
     }
 
-    public class PlayerWindowController : AWindowController<PlayerWindowProperties>
+    public class PlayerWindowController : WindowController<PlayerWindowProperties>
     {
         [SerializeField] 
         private LevelProgressComponent templateLevelEntry = null;

@@ -1,14 +1,15 @@
 ﻿namespace UIFramework
 {
+    // 对于Window实现队列和栈进行弹出的管理，Panel则不用。支持界面的传参（Properties类）
     /// <summary>
     /// 窗口管理类
     /// </summary>
-    public abstract class AWindowController : AWindowController<WindowProperties> { }
+    public abstract class WindowController : WindowController<WindowProperties> { }
 
     /// <summary>
     /// 窗口管理基类
     /// </summary>
-    public abstract class AWindowController<TProps> : UIScreenController<TProps>, IWindowController
+    public abstract class WindowController<TProps> : UIScreenController<TProps>, IWindowController
         where TProps : IWindowProperties
     {
         public bool HideOnForegroundLost {

@@ -27,7 +27,7 @@ namespace UIFramework
                 foreach (var screen in screensToRegister) {
                     var screenInstance = Instantiate(screen);
                     var screenController = screenInstance.GetComponent<IScreenController>();
-
+                    //二次注册，隐藏已经实例化的
                     if (screenController != null) {
                         newUI.RegisterScreen(screen.name, screenController, screenInstance.transform);
                         if (deactivateScreenGOs && screenInstance.activeSelf) {

@@ -28,7 +28,10 @@ namespace UIFramework.Examples
         }
 
         private void Start() {
-            uiFrame.OpenWindow(ScreenIds.StartGameWindow);
+            // uiFrame.OpenWindow(ScreenIds.StartGameWindow);
+            uiFrame.OpenWindow(ScreenIds.TestPanel,new TestParam("Hello,World!"));
+            
+          
         }
 
         private void OnStartDemo() {

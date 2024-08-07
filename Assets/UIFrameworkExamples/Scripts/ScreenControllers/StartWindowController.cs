@@ -10,5 +10,20 @@ namespace UIFramework.Examples
         public void UI_Start() {
             Signals.Get<StartDemoSignal>().Dispatch();
         }
+
+        public override void UI_Close()
+        {
+            base.UI_Close();
+        }
+
+        protected override void AddListeners()
+        {
+            base.AddListeners();
+        }
+
+        protected override void OnPropertiesSet()
+        {
+            base.OnPropertiesSet();
+        }
     }
 }

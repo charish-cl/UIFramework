@@ -27,6 +27,8 @@ namespace UIFramework.Examples {
         
         public const string StartGameWindow = "StartGameWindow";
         
+        public const string TestPanel = "TestPanel";
+        
         public const string ThreeDExample = "ThreeDExample";
         
         public const string ToastPanel = "ToastPanel";

@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelProgress:
   - LevelName: "\u6D4B\u8BD51"
-    Stars: 3
+    Stars: 1
   - LevelName: "\u6D4B\u8BD52"
     Stars: 2
   - LevelName: "\u6D4B\u8BD53"
-    Stars: 1
+    Stars: 3
   - LevelName: "\u6D4B\u8BD54"
-    Stars: 0
+    Stars: 3

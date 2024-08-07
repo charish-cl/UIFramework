@@ -16,6 +16,9 @@ namespace UIFramework.Examples
         [SerializeField] public Text confirmButtonLabel;
         [SerializeField] public Text cancelButtonLabel;
         [SerializeField] public GameObject cancelButtonObject;
+        /// <summary>
+        /// 当属性设置完成时调用
+        /// </summary>
         protected override void OnPropertiesSet() {
             titleLabel.text = Properties.Title;
             messageLabel.text = Properties.Message;
